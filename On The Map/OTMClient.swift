@@ -17,8 +17,6 @@ class OTMClient : NSObject {
     var firstName: String? = nil
     var lastName: String? = nil
     
-    var studentLocations = [StudentLocation]()
-    
     // MARK: Initializers
     
     override init() {
@@ -99,6 +97,7 @@ class OTMClient : NSObject {
         // There are none...
         var mutableParameters = [String: AnyObject]()
         mutableParameters[ParameterKeys.Limit] = Constants.Limit
+        mutableParameters[ParameterKeys.Order] = Constants.Order
         
         /* 2/3. Build the URL and configure the request */
         let urlString = Methods.Parse + OTMClient.escapedParameters(mutableParameters)
@@ -139,7 +138,13 @@ class OTMClient : NSObject {
                 if error != nil {
                     completionHandler(success: false, errorString: "Data parse failed.")
                 } else {
-                    OTMClient.sharedInstance().studentLocations = StudentLocation.StudentLocationFromResults(result["results"] as! [[String : AnyObject]])
+                    let resultArray = result["results"] as! [[String : AnyObject]]
+                    
+                    let sortedArray = resultArray.sort({ (first, second) -> Bool in
+                        first["updatedAt"] as! String > second["updatedAt"] as! String
+                    })
+                    
+                    StudentLocation.studentLocations = StudentLocation.StudentLocationFromResults(sortedArray)
                     completionHandler(success: true, errorString: nil)
                 }
             })

@@ -96,4 +96,9 @@ extension PostingLocationViewController: UITextFieldDelegate {
         }
     }
     
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    
 }

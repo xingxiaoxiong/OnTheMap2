@@ -68,7 +68,7 @@ class StudentLocationTableViewController: UITableViewController {
         
         /* Get cell type */
         let cellReuseIdentifier = "StudentLocationCell"
-        let studentLocation = OTMClient.sharedInstance().studentLocations[indexPath.row]
+        let studentLocation = StudentLocation.studentLocations[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -80,11 +80,11 @@ class StudentLocationTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return OTMClient.sharedInstance().studentLocations.count
+        return StudentLocation.studentLocations.count
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        guard let urlString = OTMClient.sharedInstance().studentLocations[indexPath.row].mediaURL else {
+        guard let urlString = StudentLocation.studentLocations[indexPath.row].mediaURL else {
             Alert(self, title: "Alert", message: "No URL presented")
             return
         }

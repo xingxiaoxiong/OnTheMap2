@@ -11,6 +11,7 @@ extension OTMClient {
         
         // MARK: Parameters
         static let Limit : Int = 100
+        static let Order = "-updatedAt"
         
         
     }
@@ -37,6 +38,8 @@ extension OTMClient {
     struct ParameterKeys {
         
         static let Limit = "limit"
+        static let Order = "order"
+        
     }
 
     // MARK: JSON Response Keys
@@ -63,10 +66,5 @@ extension OTMClient {
         
     }
     
-    // MARK: Poster Sizes
-    struct PosterSizes {
-        
-        
-        
-    }
+
 }

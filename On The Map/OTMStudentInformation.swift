@@ -10,6 +10,8 @@ struct StudentLocation {
     
     // MARK: Properties
     
+    static var studentLocations = [StudentLocation]()
+    
     var objectId = ""
     var uniqueKey = ""
     var firstName = ""

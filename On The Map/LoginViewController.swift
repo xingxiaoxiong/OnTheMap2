@@ -23,6 +23,9 @@ class LoginViewController: UIViewController {
         self.emailTextField.text = ""
         self.passwordTextField.text = ""
         
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
+        
         let tapRecognizer = UITapGestureRecognizer(target: self, action: "handleSingleTap:")
         tapRecognizer.numberOfTapsRequired = 1
         tapRecognizer.delegate = self
@@ -98,5 +101,14 @@ extension LoginViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(gestureRecognizer: UIGestureRecognizer, shouldReceiveTouch touch: UITouch) -> Bool {
         return self.emailTextField.isFirstResponder() || self.passwordTextField.isFirstResponder()
     }
+}
+
+extension LoginViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.endEditing(true)
+        return false
+    }
+    
 }
 

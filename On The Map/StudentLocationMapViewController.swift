@@ -18,7 +18,7 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate {
         
         mapView.delegate = self
         
-        if OTMClient.sharedInstance().studentLocations.count == 0 {
+        if StudentLocation.studentLocations.count == 0 {
             RefreshData(refreshData)
         }
         
@@ -49,7 +49,7 @@ class StudentLocationMapViewController: UIViewController, MKMapViewDelegate {
         if success {
             var annotations = [MKPointAnnotation]()
             
-            for location in OTMClient.sharedInstance().studentLocations {
+            for location in StudentLocation.studentLocations {
                 
                 let lat = CLLocationDegrees(location.latitude)
                 let long = CLLocationDegrees(location.longitude)
